@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import DiffView from '../DiffView'
+import { FileIcon, FolderIcon } from '../FileIcon'
 import './FileHistoryPanel.css'
 
 function fmtDate(d) {
@@ -47,11 +48,11 @@ function FileTreeNode({ node, depth, active, onSelect, filterQ }) {
     return (
       <div
         className={`fh-tree-file ${active === node.path ? 'active' : ''}`}
-        style={{ paddingLeft: depth * 12 + 8 }}
+        style={{ paddingLeft: depth * 12 + 6 }}
         onClick={() => onSelect(node.path)}
         title={node.path}
       >
-        <span className="fh-tree-file-icon">📄</span>
+        <FileIcon name={node.name} />
         <span className="fh-tree-name">{node.name}</span>
       </div>
     )
@@ -67,11 +68,11 @@ function FileTreeNode({ node, depth, active, onSelect, filterQ }) {
     <div>
       <div
         className="fh-tree-dir"
-        style={{ paddingLeft: depth * 12 + 8 }}
+        style={{ paddingLeft: depth * 12 + 6 }}
         onClick={() => setOpen(o => !o)}
       >
         <span className="fh-tree-arrow">{open || filterQ ? '▾' : '▸'}</span>
-        <span className="fh-tree-dir-icon">📁</span>
+        <FolderIcon name={node.name} open={open || !!filterQ} />
         <span className="fh-tree-name">{node.name}</span>
       </div>
       {(open || filterQ) && visibleKids.map(child => (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, memo, useCallback } from 'react'
 import ResizeHandle from '../ResizeHandle'
+import { FileIcon, FolderIcon } from '../FileIcon'
 import './ComparePanel.css'
 
 // ─── Ref Picker ───────────────────────────────────────────────────────────────
@@ -223,28 +224,26 @@ function FileTreeNode({ node, depth, activeFile, onSelect }) {
     return (
       <div
         className={`ftree-file ${activeFile === node.path ? 'active' : ''}`}
-        style={{ paddingLeft: depth * 12 + 8 }}
+        style={{ paddingLeft: depth * 12 + 6 }}
         onClick={() => onSelect(node.path)}
         title={node.path}
       >
-        <span className="ftree-indent" />
-        <span className="ftree-file-icon">📄</span>
+        <FileIcon name={node.name} />
         <span className="ftree-name">{node.name}</span>
         <span className={`status-badge ${STATUS_CLASS[node.status] || 'badge-U'}`}>{node.status}</span>
       </div>
     )
   }
 
-  // dir
   return (
     <div>
       <div
         className="ftree-dir"
-        style={{ paddingLeft: depth * 12 + 8 }}
+        style={{ paddingLeft: depth * 12 + 6 }}
         onClick={() => setOpen(o => !o)}
       >
         <span className="ftree-arrow">{open ? '▾' : '▸'}</span>
-        <span className="ftree-dir-icon">📁</span>
+        <FolderIcon name={node.name} open={open} />
         <span className="ftree-name">{node.name}</span>
       </div>
       {open && sortedEntries(node.children).map(child => (

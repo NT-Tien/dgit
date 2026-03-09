@@ -55,7 +55,16 @@ export default function App() {
   }, [])
 
   const handleBranchChange = useCallback((newBranch) => {
-    setActiveRepo(prev => prev ? { ...prev, currentBranch: newBranch } : prev)
+    setActiveRepo(prev => {
+      if (!prev) return prev
+      const updated = { ...prev, currentBranch: newBranch }
+      setRepos(rs => {
+        const next = rs.map(r => r.path === updated.path ? updated : r)
+        saveRepos(next)
+        return next
+      })
+      return updated
+    })
   }, [])
 
   return (
