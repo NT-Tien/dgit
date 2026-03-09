@@ -1,0 +1,15 @@
+{
+  "name": "dgit",
+  "version": "1.0.0",
+  "description": "Easy like a duck",
+  "main": "index.js",
+  "repository": "https://github.com/NT-Tien/dgit.git",
+  "author": "TienNT",
+  "license": "Apache License",
+  "scripts": {
+    "start": "electron ./src/main.js"
+  },
+  "devDependencies": {
+    "electron": "^40.8.0"
+  }
+}
