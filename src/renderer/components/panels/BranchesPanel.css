@@ -1,0 +1,10 @@
+.branches-panel { overflow-y: auto; }
+.branch-group-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--sub); margin-bottom: 6px; }
+.branch-row { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); margin-bottom: 4px; }
+.branch-row.current { border-color: var(--green); background: rgba(166,227,161,0.04); }
+.branch-row.remote .branch-indicator { background: var(--peach) !important; }
+.branch-indicator { width: 8px; height: 8px; border-radius: 50%; background: var(--sub); flex-shrink: 0; }
+.branch-row.current .branch-indicator { background: var(--green); }
+.branch-name { font-weight: 600; font-size: 12px; flex: 1; }
+.branch-sha { font-size: 11px; color: var(--mauve); font-family: monospace; }
+.branch-sub { font-size: 11px; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }

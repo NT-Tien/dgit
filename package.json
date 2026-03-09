@@ -2,14 +2,28 @@
   "name": "dgit",
   "version": "1.0.0",
   "description": "Easy like a duck",
-  "main": "index.js",
+  "main": "src/main.js",
   "repository": "https://github.com/NT-Tien/dgit.git",
   "author": "TienNT",
   "license": "Apache License",
   "scripts": {
-    "start": "electron ./src/main.js"
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite build && electron .",
+    "electron": "electron ./src/main.js"
   },
   "devDependencies": {
-    "electron": "^40.8.0"
+    "@vitejs/plugin-react": "^5.1.4",
+    "electron": "^40.8.0",
+    "electron-rebuild": "^3.2.9",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "node-pty": "^1.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "simple-git": "^3.32.3",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
   }
 }

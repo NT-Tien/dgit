@@ -1,0 +1,43 @@
+.diff-view { font-family: 'SF Mono','Fira Code','JetBrains Mono',monospace; font-size: 12px; line-height: 1.55; }
+
+.diff-file { margin-bottom: 16px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.diff-file-header {
+  background: var(--bg2); padding: 6px 14px;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; color: var(--blue); font-size: 12px;
+}
+.diff-file-icon { font-size: 13px; }
+.diff-file-name { flex: 1; }
+.diff-file-body { background: var(--bg1); overflow-x: auto; }
+
+.diff-row {
+  display: grid;
+  grid-template-columns: 44px 44px 16px 1fr;
+  min-height: 20px;
+}
+.diff-hunk-header {
+  display: grid;
+  grid-template-columns: 44px 44px 1fr;
+  background: rgba(137,180,250,0.07);
+  color: var(--blue); font-style: italic;
+  min-height: 20px;
+}
+.diff-ln {
+  padding: 0 8px; text-align: right;
+  color: var(--sub); font-size: 11px;
+  border-right: 1px solid var(--border);
+  user-select: none; line-height: 20px;
+}
+.diff-prefix { padding: 0 4px; line-height: 20px; user-select: none; }
+.diff-text { padding: 0 8px; white-space: pre; line-height: 20px; }
+
+.diff-add { background: rgba(166,227,161,0.08); }
+.diff-add .diff-prefix { color: var(--green); }
+.diff-add .diff-text { color: var(--green); }
+
+.diff-del { background: rgba(243,139,168,0.08); }
+.diff-del .diff-prefix { color: var(--red); }
+.diff-del .diff-text { color: var(--red); }
+
+.diff-ctx .diff-text { color: var(--text); }
+.diff-ctx .diff-prefix { color: var(--sub); }

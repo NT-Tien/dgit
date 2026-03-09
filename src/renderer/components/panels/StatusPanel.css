@@ -1,0 +1,13 @@
+.status-panel { padding: 16px; }
+.status-group { margin-bottom: 20px; }
+.status-group-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--sub); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.status-count { background: var(--bg2); padding: 1px 6px; border-radius: 10px; font-size: 10px; color: var(--text); }
+.status-file { display: flex; align-items: center; gap: 10px; padding: 5px 8px; border-radius: 4px; font-size: 12px; }
+.status-file:hover { background: var(--bg2); }
+.status-file-name { flex: 1; }
+.status-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+.badge-M { background: rgba(249,226,175,.15); color: var(--yellow); }
+.badge-A { background: rgba(166,227,161,.15); color: var(--green); }
+.badge-D { background: rgba(243,139,168,.15); color: var(--red); }
+.badge-R { background: rgba(203,166,247,.15); color: var(--mauve); }
+.badge-U { background: rgba(166,173,200,.15); color: var(--sub); }
