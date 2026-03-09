@@ -30,7 +30,7 @@ export default function CommitsPanel({ repo }) {
       setCommits(Array.isArray(res) ? res : [])
       setLoading(false)
     })
-  }, [repo?.path])
+  }, [repo?.path, repo?.currentBranch])
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()

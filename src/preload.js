@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld('dgit', {
   gitCommitFiles: (repoPath, commitHash) => ipcRenderer.invoke('git:commitFiles', repoPath, commitHash),
   gitDiffFiles: (repoPath, from, to) => ipcRenderer.invoke('git:diffFiles', repoPath, from, to),
   gitCheckout: (repoPath, branch) => ipcRenderer.invoke('git:checkout', repoPath, branch),
+  gitShowFileDiff: (repoPath, commitHash, filePath) => ipcRenderer.invoke('git:showFileDiff', repoPath, commitHash, filePath),
   pty: {
     create: (repoPath) => ipcRenderer.invoke('pty:create', repoPath),
     write: (data) => ipcRenderer.send('pty:write', data),

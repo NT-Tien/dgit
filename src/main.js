@@ -112,6 +112,16 @@ ipcMain.handle('git:show', async (_, repoPath, commitHash, filePath) => {
   } catch (e) { return { error: e.message } }
 })
 
+// ─── IPC: diff for a single commit + file ────────────────────────────────────
+
+ipcMain.handle('git:showFileDiff', async (_, repoPath, commitHash, filePath) => {
+  try {
+    const g = git(repoPath)
+    const result = await g.raw(['show', '--unified=5', commitHash, '--', filePath])
+    return result
+  } catch (e) { return { error: e.message } }
+})
+
 // ─── IPC: branches ───────────────────────────────────────────────────────────
 
 ipcMain.handle('git:branches', async (_, repoPath) => {

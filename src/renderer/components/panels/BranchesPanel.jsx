@@ -12,7 +12,7 @@ export default function BranchesPanel({ repo }) {
       setBranches(Array.isArray(res) ? res : [])
       setLoading(false)
     })
-  }, [repo?.path])
+  }, [repo?.path, repo?.currentBranch])
 
   if (!repo) return <div className="empty-state">Open a repository</div>
   if (loading) return <div className="loading-state">Loading…</div>

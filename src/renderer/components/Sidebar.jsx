@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Sidebar({ repos, activeRepo, onOpen, onSelect, onRemove }) {
+export default function Sidebar({ repos, activeRepo, onOpen, onSelect, onRemove, width }) {
   return (
-    <div className="sidebar">
+    <div className="sidebar" style={width ? { width } : undefined}>
       <div className="sidebar-header">
         <span>Explorer</span>
         <button onClick={onOpen} title="Open repository">+</button>

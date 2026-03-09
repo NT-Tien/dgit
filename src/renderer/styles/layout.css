@@ -189,6 +189,13 @@
 }
 .resize-handle:hover, .resize-handle.dragging { background: var(--blue); }
 
+.resize-handle-h {
+  width: 4px; background: transparent; cursor: ew-resize;
+  flex-shrink: 0; border-left: 1px solid var(--border); transition: background 0.15s;
+  align-self: stretch;
+}
+.resize-handle-h:hover, .resize-handle-h.dragging { background: var(--blue); }
+
 /* ── Terminal header ── */
 .terminal-header {
   display: flex; align-items: center; gap: 8px;

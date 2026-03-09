@@ -14,8 +14,9 @@ const saveRepos = (repos) => localStorage.setItem(STORAGE_KEY, JSON.stringify(re
 export default function App() {
   const [repos, setRepos] = useState(loadRepos)
   const [activeRepo, setActiveRepo] = useState(() => loadRepos()[0] || null)
-  const [activePanel, setActivePanel] = useState('explorer') // activity bar panel
+  const [activePanel, setActivePanel] = useState('explorer')
   const [termHeight, setTermHeight] = useState(() => parseInt(localStorage.getItem('dgit-term-h') || '220'))
+  const [sideWidth, setSideWidth] = useState(() => parseInt(localStorage.getItem('dgit-side-w') || '240'))
 
   const handleOpenRepo = useCallback(async () => {
     const result = await window.dgit.openFolder()
@@ -29,9 +30,7 @@ export default function App() {
     setActiveRepo(result)
   }, [])
 
-  const handleSelectRepo = useCallback((repo) => {
-    setActiveRepo(repo)
-  }, [])
+  const handleSelectRepo = useCallback((repo) => setActiveRepo(repo), [])
 
   const handleRemoveRepo = useCallback((path) => {
     setRepos(prev => {
@@ -50,16 +49,19 @@ export default function App() {
     localStorage.setItem('dgit-term-h', h)
   }, [])
 
+  const handleSideResize = useCallback((w) => {
+    setSideWidth(w)
+    localStorage.setItem('dgit-side-w', w)
+  }, [])
+
   const handleBranchChange = useCallback((newBranch) => {
     setActiveRepo(prev => prev ? { ...prev, currentBranch: newBranch } : prev)
   }, [])
 
   return (
     <div className="app-shell">
-      {/* Titlebar (macOS traffic lights area) */}
       <div className="titlebar" />
 
-      {/* Body */}
       <div className="app-body">
         <ActivityBar active={activePanel} onChange={setActivePanel} />
 
@@ -70,11 +72,19 @@ export default function App() {
           onOpen={handleOpenRepo}
           onSelect={handleSelectRepo}
           onRemove={handleRemoveRepo}
+          width={sideWidth}
+        />
+        <ResizeHandle
+          direction="horizontal"
+          onResize={handleSideResize}
+          currentSize={sideWidth}
+          minSize={160}
+          maxSize={480}
         />
 
         <div className="main-col flex flex-col flex1 overflow-hidden">
           <MainArea activeRepo={activeRepo} />
-          <ResizeHandle onResize={handleTermResize} currentH={termHeight} minH={60} maxH={600} />
+          <ResizeHandle onResize={handleTermResize} currentSize={termHeight} minSize={60} maxSize={600} />
           <Terminal activeRepo={activeRepo} height={termHeight} />
         </div>
       </div>

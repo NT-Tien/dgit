@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, memo, useCallback } from 'react'
+import ResizeHandle from '../ResizeHandle'
 import './ComparePanel.css'
 
 // ─── Ref Picker ───────────────────────────────────────────────────────────────
@@ -277,6 +278,7 @@ export default function ComparePanel({ repo }) {
   const [activeFile, setActiveFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [diffLoading, setDiffLoading] = useState(false)
+  const [filelistWidth, setFilelistWidth] = useState(210)
 
   useEffect(() => {
     if (!repo) return
@@ -327,7 +329,7 @@ export default function ComparePanel({ repo }) {
       {/* Body */}
       <div className="compare-body">
         {/* File list sidebar */}
-        <div className="compare-filelist">
+        <div className="compare-filelist" style={{ width: filelistWidth }}>
           <div className="compare-filelist-header">
             Files changed
             {fileList.length > 0 && <span className="compare-file-count">{fileList.length}</span>}
@@ -339,6 +341,13 @@ export default function ComparePanel({ repo }) {
             <FileTree files={fileList} activeFile={activeFile} onSelect={loadFileDiff} />
           </div>
         </div>
+        <ResizeHandle
+          direction="horizontal"
+          onResize={setFilelistWidth}
+          currentSize={filelistWidth}
+          minSize={140}
+          maxSize={420}
+        />
 
         {/* Diff viewer */}
         <div className="compare-diff-area">
